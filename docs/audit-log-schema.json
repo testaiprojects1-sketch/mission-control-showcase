@@ -1,0 +1,12 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Mission Control Audit Log Entry",
+  "type": "object",
+  "required": ["trace_id", "timestamp", "event_type", "payload"],
+  "properties": {
+    "trace_id": { "type": "string", "format": "uuid" },
+    "timestamp": { "type": "string", "format": "date-time" },
+    "event_type": { "enum": ["workflow_change", "node_execution", "tool_call", "compliance_check", "realtime_sync", "auth_event"] },
+    "payload": { "type": "object" }
+  }
+}

@@ -1,0 +1,68 @@
+%%{init: {'theme': 'base', 'themeVariables': {
+  'primaryColor': '#0B2D4A',
+  'primaryTextColor': '#fff',
+  'primaryBorderColor': '#00C9A7',
+  'lineColor': '#888',
+  'secondaryColor': '#1A1A2E',
+  'tertiaryColor': '#E85D4D',
+  'background': 'transparent',
+  'mainBkg': 'transparent',
+  'secondBkg': 'transparent',
+  'tertiaryBkg': 'transparent'
+}}}%%
+flowchart LR
+    subgraph Client[Client Layer]
+        UI[Next.js 15 Dashboard]
+        BPMN[bpmn-js Editor]
+        Viz[Three.js Viz]
+        Collab[Yjs CRDT Sync]
+    end
+    subgraph Backend[Supabase Backend]
+        Auth[Auth + RLS]
+        Realtime[Realtime Server]
+        Edge[Edge Functions]
+        PG[(PostgreSQL + pgvector)]
+        Storage[S3-compatible Storage]
+    end
+    subgraph Agents[Agent Runtime (Edge Functions)]
+        Orch[Orchestrator]
+        Research[Research Agent]
+        Risk[Risk Agent]
+        Comply[Compliance Agent]
+    end
+    subgraph Data[Data Layer]
+        Market[Market Data APIs]
+        News[News Feeds]
+        Vector[pgvector Index]
+        Cache[Redis]
+    end
+    subgraph Governance[Governance]
+        Audit[Audit Logger]
+        Eval[Eval Harness]
+        Dashboard[Compliance Dashboard]
+    end
+
+    UI --> Auth
+    UI --> Realtime
+    BPMN --> Realtime
+    BPMN --> Edge
+    Viz --> PG
+    Collab --> Realtime
+    Edge --> Orch
+    Orch --> Research
+    Orch --> Risk
+    Orch --> Comply
+    Research --> Market
+    Research --> News
+    Research --> Vector
+    Risk --> Market
+    Comply --> PG
+    Orch --> Audit
+    Audit --> Dashboard
+    Eval --> Audit
+
+    style Client fill:#0B2D4A,color:#fff
+    style Backend fill:#1A1A2E,color:#fff
+    style Agents fill:#1A1A2E,color:#fff
+    style Data fill:#00C9A7,color:#0B2D4A
+    style Governance fill:#E85D4D,color:#fff

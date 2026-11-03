@@ -1,0 +1,7 @@
+id,risk,likelihood,impact,mitigation,owner,status
+R-01,BPMN semantic gap for AI nodes,Medium,High,"Custom extensions + validation layer",Jane,Active
+R-02,Edge Function cold start latency,High,Medium,"Warm pools + keep-alive",Jane,Monitored
+R-03,Realtime sync conflict,Low,High,"Yjs CRDT + audit trail",Jane,Active
+R-04,Multi-tenant data leakage,Low,Critical,"RLS on all tables + audit",Jane,Active
+R-05,Market data API cost overrun,Medium,Medium,"Intelligent caching + batch requests",Jane,Active
+R-06,Vector index performance degradation,Medium,High,"Partitioning + quantization + monitoring",Jane,Planned
